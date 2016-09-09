@@ -17,11 +17,10 @@ const setup = {};
 const sagaMiddlewareInstance = createSagaMiddleware();
 
 
-//add SagaMiddleware to the store
-const store = createStore(reducer, applyMiddleware(createSagaMiddlewareInstance);
+//add SagaMiddleware to the store, applyMiddlleware allows us to use sagas
+const store = createStore(reducer, applyMiddleware(createSagaMiddlewareInstance));
 
 
-//not sure what this component needs to be
 setup.render = function render(Component) {
   ReactDOM.render(<Provider store = {store} > <Component /> </Provider>, document.getElementById('root'));
 };
