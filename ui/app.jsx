@@ -9,7 +9,7 @@ export class App extends React.Component {
 	}
 
   render() {
-    const { searchWord, searchAllDB } = this.props;
+    const { searchWord, searchAllMovies } = this.props;
     return (
     //wrapping div for adjacent JSX error, creating textbox, and button
       <div>
@@ -22,7 +22,8 @@ export class App extends React.Component {
           />
         </div>
         <div>
-          button onClick = {() => searchAllDB(searchWord)}>
+          button onClick = {() => searchAllMovies(searchWord)}> 
+          FIND MY MOVIES!
         </div>
       </div>
     );
