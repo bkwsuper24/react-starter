@@ -9,6 +9,7 @@ class MovieDisplay extends React.Component {
   render() {
     const { movie } = this.props;
 
+    //this is a temporary div because movie.Title is returning null error
     return (<div> AYYY </div>
       /*<div>
         <p>Title: {movie.Title}</p>
