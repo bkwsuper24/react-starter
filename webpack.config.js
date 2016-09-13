@@ -5,7 +5,7 @@ var manifest = require('./manifest.json');
 
 module.exports = {
   context: __dirname,
-  entry: ['babel-polyfill', __dirname + '/ui/index.js'],
+  entry: ['babel-polyfill', 'whatwg-fetch', __dirname + '/ui/index.js'],
   output: {
     filename: 'index.js',
     path: __dirname + '/public/dist',

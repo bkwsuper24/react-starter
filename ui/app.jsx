@@ -38,7 +38,9 @@ export class App extends React.Component {
   // getting error converting data tyoe varchar to int
   showDisplay() {
     if (this.state.singleMovieInfo.length === 0) return null;
+
     console.log(this.state.singleMovieInfo);
+    console.log(this.state.singleMovieInfo.Title);
     return (
       <div>
         <p>Title: {this.state.singleMovieInfo.Title}</p>
@@ -64,7 +66,8 @@ export class App extends React.Component {
 
   // separating button from map
   renderButton = (entry, i) => (
-    <button key={i} onClick={() => this.getSingleMovie(entry)}>{entry.Title} {entry.Year}</button>
+    <button key={i} onClick={() => this.getSingleMovie(entry.imdbID)}>
+    {entry.Title} {entry.Year}</button>
 )
 
   render() {

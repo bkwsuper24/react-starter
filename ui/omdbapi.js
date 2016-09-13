@@ -6,7 +6,7 @@ export function searchAllMovies(searchWord) {
 }
 
 export function fetchSingleMovie(movieID) {
-  const api = fetch('http://www.omdbapi.com/?i={movieID}&plot=full&r=json');
+  const api = fetch(`http://www.omdbapi.com/?i=${movieID}&plot=full&r=json`);
   console.log(movieID);
   return api;
 }

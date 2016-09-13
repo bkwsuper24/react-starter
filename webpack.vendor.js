@@ -6,7 +6,12 @@ module.exports = {
   entry: {
     vendor: [
       'react',
-      'react-dom'
+      'react-dom',
+      'react-modal',
+      'react-redux',
+      'redux',
+      'redux-saga',
+
     ]
   },
   output: {

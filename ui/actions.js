@@ -1,16 +1,16 @@
-import Types from './types';
+import types from './types';
 
 // first keyword search
 export function searchAllMovies(searchWord) {
   return {
-    type: Types.SEARCHING,
+    type: types.SEARCHING,
     searchWord,
   };
 }
 
 export function fetchSingleMovie(movieID) {
   return {
-    type: Types.RESULT_SINGLE_MOVIE,
+    type: types.RESULT_SINGLE_MOVIE,
     movieID,
   };
 }
