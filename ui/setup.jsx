@@ -1,10 +1,10 @@
 // https://yelouafi.github.io/redux-saga/docs/api/index.html#createsagamiddlewareoptions
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import reducer from './reducer';
 import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducer';
 import { searchMovies } from './sagas';
 
 window.React = React;

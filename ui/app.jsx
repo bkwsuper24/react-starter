@@ -1,7 +1,5 @@
 import { connect } from 'react-redux';
 import { searchAllMovies, fetchSingleMovie } from './omdbapi';
-import MovieDisplay from './movie_display.jsx';
-import Modal from 'react-modal';
 
 export class App extends React.Component {
   constructor(props) {
@@ -9,23 +7,25 @@ export class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.updateChange = this.updateChange.bind(this);
     this.renderResults = this.renderResults.bind(this);
-    this.renderSingleMovie = this.renderSingleMovie.bind(this);
+    this.getSingleMovie = this.getSingleMovie.bind(this);
 
     this.state = {
       searchWord: '',
       movies: [],
-      showResults: false,
-      singleMovie: null,
+      singleMovieInfo: [],
     };
   }
 
-// what to do when button is clicked
-  handleClick() {
-    searchAllMovies(this.state.searchWord).then(response =>
-      response.json()).then(json =>
-      this.setState({ movies: json.Search }));
+  getSingleMovie(id) {
+    const api = fetchSingleMovie(id);
+    api.then(response => response.json()).then(json => this.setState({ singleMovieInfo: json }));
+  }
 
-    this.setState({ showResults: true });
+  // what to do when button is clicked
+  async handleClick() {
+    const response = await searchAllMovies(this.state.searchWord);
+    const json = await response.json();
+    this.setState({ movies: json.Search });
   }
 
   // updateChange
@@ -35,23 +35,37 @@ export class App extends React.Component {
     });
   }
 
-  renderResults() {
-    if (this.state.showResults === true) {
-      return this.state.movies.map(
-      (entry, i) => { return <button onClick={() => this.renderSingleMovie(this.state.showResults.imdbID)} key={i} >{entry.Title} {entry.Year}</button>; }
+  // getting error converting data tyoe varchar to int
+  showDisplay() {
+    if (this.state.singleMovieInfo.length === 0) return null;
+    console.log(this.state.singleMovieInfo);
+    return (
+      <div>
+        <p>Title: {this.state.singleMovieInfo.Title}</p>
+        <p>Rated: {this.state.singleMovieInfo.Rated}</p>
+        <p>Released: {this.state.singleMovieInfo.Released}</p>
+        <p>Runtime: {this.state.singleMovieInfo.Runtime}</p>
+        <p>Genre: {this.state.singleMovieInfo.Genre}</p>
+        <p>Director: {this.state.singleMovieInfo.Director}</p>
+        <p>Writer: {this.state.singleMovieInfo.Writer}</p>
+        <p>Language: {this.state.singleMovieInfo.Language}</p>
+        <p>Plot: {this.state.singleMovieInfo.Plot}</p>
+        <p>Awards: {this.state.singleMovieInfo.Awards}</p>
+        <p>IMDB Rating: {this.state.singleMovieInfo.imdbRating}</p>
+        <img src={this.state.singleMovieInfo.Poster} alt="Movie Poster" />
+      </div>
       );
-    }
-    return null;
   }
 
-  renderSingleMovie(id) {
-    fetchSingleMovie(id).then(showResults => {
-      this.setState({ singleMovie: showResults,
-      showResults: true });
-    });
+  renderResults() {
+    if (!this.state.movies) return null;
+    return this.state.movies.map(this.renderButton);
   }
 
-// when showResults flag is set to true
+  // separating button from map
+  renderButton = (entry, i) => (
+    <button key={i} onClick={() => this.getSingleMovie(entry)}>{entry.Title} {entry.Year}</button>
+)
 
   render() {
     return (
@@ -60,9 +74,8 @@ export class App extends React.Component {
         <div>
         Search titles:
           <input
-            type="text"
-            placeholder="Search Movies Here "
-            value={this.state.searchWord} onChange={this.updateChange}
+            type="text" placeholder="Search Movies Here " value={this.state.searchWord}
+            onChange={this.updateChange}
           />
         </div>
         <button
@@ -73,7 +86,7 @@ export class App extends React.Component {
         <div className="allMovieContainer">
         {this.renderResults()}
         </div>
-          <MovieDisplay movie={this.state.singleMovie} />
+        {this.showDisplay()}
       </div>
     );
   }

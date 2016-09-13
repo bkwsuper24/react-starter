@@ -1,5 +1,6 @@
-import { put, fork, take } from 'redux-saga/effects';
-import { asyncSearchAllMovies, asyncFetchSingleMovie } from './omdbapi';
+import { put } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga';
+import { asyncSearchAllMovies } from './omdbapi';
 
 export function* searchMovies(searchWord) {
   try {
@@ -11,9 +12,7 @@ export function* searchMovies(searchWord) {
 }
 
 export function* watchForSearchReturn() {
-  const loop = true;
-  while (loop) {
-    yield take("SEARCHING");
-    //yield fork(loadSearchResults);
-  }
+  yield takeEvery('SEARCHING');
+  // yield fork(loadSearchResults);
 }
+

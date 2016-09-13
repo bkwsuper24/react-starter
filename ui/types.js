@@ -1,0 +1,4 @@
+export default {
+  SEARCHING: 'SEARCHING',
+  RESULT_SINGLE_MOVIE: 'RESULT_SINGLE_MOVIE',
+};
