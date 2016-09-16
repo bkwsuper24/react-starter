@@ -14,6 +14,7 @@ export class SearchMovies extends React.Component {
   // separating button from map
   renderButton = (entry, i) => (
     <button
+      className="findMoviesButtonStyle2"
       key={i}
       onClick={() => {
         this.props.updateResults(entry);
@@ -28,16 +29,22 @@ export class SearchMovies extends React.Component {
     const { searchWord, movieResults, updateSearch, movies } = this.props;
     return (
       <div>
-        Search titles:
-        <input
-          type="text" placeholder="Search Movies Here " value={searchWord}
-          onChange={(event) => updateSearch(event.target.value)}
-        />
-        <div>
+        <div className="findMoviesStyle">
+          <strong>Search titles</strong>
+        </div>
+        <div className="textboxStyle1">
+          <input
+            className="textboxStyle2"
+            type="text" placeholder="Search Movies Here " value={searchWord}
+            onChange={(event) => updateSearch(event.target.value)}
+          />
+        </div>
+        <div className="findMoviesButton">
           <button
+            className="findMoviesButtonStyle"
             onClick={() => movieResults(searchWord)}
           >
-          FIND MY MOVIES!
+            FIND MY MOVIES!
           </button>
         </div>
         {this.renderSearch(movies)}

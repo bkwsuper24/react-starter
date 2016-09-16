@@ -24,7 +24,7 @@ class MovieDisplay extends React.Component {
 
     return (
       <div>
-        <img src={singleMovieInfo.Poster} alt="Movie Poster" />
+        <div className="posterImage"><img src={singleMovieInfo.Poster} alt="Movie Poster" /> </div>
         <p>Title: {singleMovieInfo.Title}</p>
         <p>Rated: {singleMovieInfo.Rated}</p>
         <p>Released: {singleMovieInfo.Released}</p>

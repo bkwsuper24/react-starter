@@ -2,3 +2,38 @@
 	display: flex;
 	position: relative;
 }
+
+.posterImage {
+	text-align: center;
+}
+
+.findMoviesStyle {
+	text-align: center;
+	font-size: 52pt;
+}
+
+.textboxStyle1 {
+	text-align: center;
+}
+
+.textboxStyle2 {
+	text-align: center;
+	margin-top: 30px;
+	font-size: 24pt;
+}
+
+.findMoviesButton {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.findMoviesButtonStyle {
+	font-size: 18pt;
+	margin-top: 30px;
+}
+
+.findMoviesButtonStyle2 {
+	font-size: 18pt;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
