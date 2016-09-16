@@ -13,7 +13,13 @@ export class SearchMovies extends React.Component {
 
   // separating button from map
   renderButton = (entry, i) => (
-    <button key={i} onClick={() => { this.props.updateResults(entry); browserHistory.push('movie');  }}>
+    <button
+      key={i}
+      onClick={() => {
+        this.props.updateResults(entry);
+        browserHistory.push('movie');
+      }}
+    >
     {entry.Title} {entry.Year}
     </button>
   )

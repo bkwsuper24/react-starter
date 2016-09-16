@@ -1,6 +1,3 @@
 export const SEARCHING = 'SEARCHING';
 export const RESULT_SINGLE_MOVIE = 'RESULT_SINGLE_MOVIE';
 export const UPDATE_SEARCH = 'LOAD_SEARCH';
-export const UPDATE_RESULTS = 'UPDATE_RESULTS';
-export const UPDATE_MOVIE = 'UPDATE_MOVIE';
-export const PUT_DETAILS = 'LOAD_DETAILS';

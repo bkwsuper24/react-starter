@@ -25,7 +25,7 @@ export function updateMovie(singleMovie) {
 
 export function updateResults(selected) {
   return {
-    type: types.LOAD_SINGLE,
+    type: types.RESULT_SINGLE_MOVIE,
     selected,
   };
 }
@@ -33,7 +33,7 @@ export function updateResults(selected) {
 
 export function putDetails(detail) {
   return {
-    type: types.LOAD_DETAILS,
+    type: types.SINGLE_MOVIE_DETAILS,
     detail,
   };
 }

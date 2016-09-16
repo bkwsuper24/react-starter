@@ -7,7 +7,6 @@ export async function fetchAllMovies(title) {
 }
 
 export async function fetchSingleMovie(movieID) {
-	console.log(movieID)
   const response = await fetch(`http://www.omdbapi.com/?i=${movieID}&plot=full&r=json`);
   const json = await response.json();
   return json;
