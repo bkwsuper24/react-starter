@@ -8,16 +8,32 @@ export function movieResults(searchWord) {
   };
 }
 
-export function getSingleMovie(movieID) {
+export function updateSearch(value) {
   return {
-    type: types.RESULT_SINGLE_MOVIE,
-    movieID,
+    type: types.UPDATE_SEARCH,
+    value,
   };
 }
 
-export function updateSearch(event) {
+
+export function updateMovie(singleMovie) {
   return {
-    type: types.UPDATE_SEARCH,
-    searchWord: event.target.value,
+    type: types.ALL_MOVIE_DETAILS,
+    singleMovie,
+  };
+}
+
+export function updateResults(selected) {
+  return {
+    type: types.LOAD_SINGLE,
+    selected,
+  };
+}
+
+
+export function putDetails(detail) {
+  return {
+    type: types.LOAD_DETAILS,
+    detail,
   };
 }

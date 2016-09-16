@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducer';
-import { searchMovies } from './sagas';
+import { searchMovies, searchSingleMovie  } from './sagas';
 
 window.React = React;
 
@@ -16,6 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 // add SagaMiddleware to the store, applyMiddlleware allows us to use sagas
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(searchMovies);
+sagaMiddleware.run(searchSingleMovie);
 
 
 setup.render = function render(Component) {

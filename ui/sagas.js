@@ -1,22 +1,23 @@
-import { put } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
-import { asyncSearchAllMovies, fetchSingleMovie } from './omdbapi';
-import { movieResults, getSingleMovie } from './actions';
+import { put, take } from 'redux-saga/effects';
+import { fetchAllMovies, fetchSingleMovie } from './omdbapi';
+import { updateResults, updateMovies, putDetails } from './actions';
+import * as types from './types';
 
-export function* searchMovies(searchWord) {
-  try {
-    yield put(movieResults(null));
-    const searchMovie = asyncSearchAllMovies(searchWord);
-    yield put({ type: 'DONE SEARCHING', searchMovie });
-  } catch (error) {
-    yield put({ type: 'ERROR WHEN SEARCHING', error });
+export function* searchMovies() {
+  while (true) {
+    const action = yield take(types.SEARCHING);
+    const movies = yield fetchAllMovies(action.searchWord);
+    yield put({ type: 'ALL_MOVIE_DETAILS', movies: movies });
   }
 }
 
-export function* searchSingleMovie(movieID) {
-  const movie = yield fetchSingleMovie(movieID);
-  yield put(getSingleMovie(movie));
-  yield takeEvery('SEARCHING');
-  // yield fork(loadSearchResults);
+export function* searchSingleMovie() {
+  console.log("in searchSingleMovie")
+  while (true) {
+    const action = yield take(types.RESULT_SINGLE_MOVIE);
+    console.log(results)
+    const movie = yield fetchSingleMovie(movie.selected.imdbID);
+    console.log("here")
+    yield put(putDetails(movie));
+  }
 }
-

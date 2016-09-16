@@ -1,13 +1,19 @@
 const defaultState = {
-  allMovies: [],
+  movies: [],
+  singleMovieInfo: [],
+  searchWord: '',
 };
 
 //
 export default function searchReducer(state = defaultState, action) {
   switch (action.type) {
-    case 'TESTING':
-      console.log('SUCCESS. REDUCER FIXED');
-      return { ...state, searchWord: action.allMovies };
+    case 'LOAD_SEARCH':
+      console.log(action.value);
+      return { ...state, searchWord: action.value };
+    case 'LOAD_DETAILS':
+      return { ...state, singleMovieInfo: action.detail };
+    case 'ALL_MOVIE_DETAILS':
+      return { ...state, movies: action.movies };
     default:
       return state;
   }

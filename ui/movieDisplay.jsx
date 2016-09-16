@@ -9,11 +9,15 @@ class MovieDisplay extends React.Component {
     this.props = props;
   }
 
+
   render() {
+    console.log(singleMovieInfo);
+
     const { singleMovieInfo } = this.props;
     const exitButton = <div name="closeButton"><Link to="/">Close</Link></div>;
+    console.log(singleMovieInfo);
 
-    if (singleMovieInfo === null) {
+    if (singleMovieInfo.length === 0) {
       return (
         <div>
           <div>{exitButton}</div>
@@ -43,7 +47,7 @@ class MovieDisplay extends React.Component {
 }
 
 MovieDisplay.propTypes = {
-  singleMovieInfo: React.PropTypes.object,
+  singleMovieInfo: React.PropTypes.array,
 };
 
 function mapStateToProps(state) {
